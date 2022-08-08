@@ -1,1 +1,1 @@
-find . -not -path '*/.*' | wc -l | xargs
+find . -type f -o -type d | wc -l | xargs

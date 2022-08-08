@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_combn.c                                   :+:      :+:    :+:   */
+/*   ft_print_comb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:00:42 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/05 15:26:36 by joaooliv         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:32:19 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_print_combn_rec(int orig_n, int n_left, int prev, \
+void	ft_print_combn_rec(int orig_n, int n_left, int current, \
 		char *previous_nums)
 {
-	while (prev < 10)
+	while (current < 10 && n_left >= 1)
 	{
-		previous_nums[orig_n - n_left] = prev + '0';
+		previous_nums[orig_n - n_left] = current + '0';
 		if (n_left == 1)
 		{
 			write(1, previous_nums, orig_n);
-			write(1, &" ", 1);
-		}
-		prev++;
-		ft_print_combn_rec(orig_n, n_left - 1, prev, previous_nums);
+			if ((10 - orig_n) + '0' != previous_nums[0])
+				write(1, &", ", 2);
+		}	
+		current++;
+		ft_print_combn_rec(orig_n, n_left - 1, current, previous_nums);
 	}
 }
 
