@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 13:34:48 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/05 13:35:58 by joaooliv         ###   ########.fr       */
+/*   Created: 2022/08/17 13:37:49 by joaooliv          #+#    #+#             */
+/*   Updated: 2022/08/17 19:22:24 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_is_negative(int n);
+#include <unistd.h>
 
-int main() 
+void	put_str(char *str)
 {
-	ft_is_negative(0);
-	ft_is_negative(-1);
+	while (*str)
+		write(1, str++, 1);
+}
+
+int	main( int argc, char *argv[] )
+{
+	int	argv_i;
+
+	argv_i = argc - 1;
+	while (argv_i >= 1)
+	{
+		put_str(argv[argv_i--]);
+		write(1, "\n", 1);
+	}
+	return (1);
 }
