@@ -1,31 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 17:19:21 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/16 19:06:18 by joaooliv         ###   ########.fr       */
+/*   Created: 2022/08/16 16:20:01 by joaooliv          #+#    #+#             */
+/*   Updated: 2022/08/18 19:45:36 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
-{
-	unsigned int	src_size;
-	unsigned int	curr_size;
 
-	src_size = 0;
-	while (src[src_size])
-		src_size++;
-	if (size != 0)
+int	ft_is_prime(int nb)
+{
+	int	divisor;
+
+	if (nb > 1)
 	{
-		curr_size = 0;
-		while (*(src + curr_size) && curr_size < size - 1)
+		divisor = 2;
+		while (divisor <= nb / 2)
 		{
-			*(dest + curr_size) = *(src + curr_size);
-			curr_size++;
+			if (nb % divisor == 0)
+			{
+				return (0);
+			}
+			divisor++;
 		}
-		*(dest + curr_size) = 0;
+		return (1);
 	}
-	return (src_size);
+	return (0);
+}
+
+int	ft_find_next_prime(int nb)
+{
+	if (nb <= 2)
+		return (2);
+	else
+	{
+		while (nb <= 2147483647)
+		{
+			if (ft_is_prime(nb))
+				return (nb);
+			nb++;
+		}
+		return (0);
+	}
 }

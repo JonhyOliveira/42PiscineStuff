@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 17:19:21 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/16 19:06:18 by joaooliv         ###   ########.fr       */
+/*   Created: 2022/08/18 11:59:33 by joaooliv          #+#    #+#             */
+/*   Updated: 2022/08/18 12:07:43 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
-{
-	unsigned int	src_size;
-	unsigned int	curr_size;
 
-	src_size = 0;
-	while (src[src_size])
-		src_size++;
-	if (size != 0)
+#include <stdlib.h>
+
+int	range_size(int min, int max)
+{
+	return (max - min);
+}
+
+int	ft_ultimate_range(int **range, int min, int max)
+{
+	int	*range_it;
+	int	curr;
+
+	if (min >= max)
 	{
-		curr_size = 0;
-		while (*(src + curr_size) && curr_size < size - 1)
-		{
-			*(dest + curr_size) = *(src + curr_size);
-			curr_size++;
-		}
-		*(dest + curr_size) = 0;
+		*range = (int *) 0;
+		return (0);
 	}
-	return (src_size);
+	*range = (int *) malloc(sizeof(int) * range_size(min, max));
+	range_it = *range;
+	curr = min;
+	while (curr < max)
+	{
+		*range_it++ = curr++;
+	}
+	return (range_size(min, max));
 }

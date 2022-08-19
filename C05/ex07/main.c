@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 17:19:21 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/16 19:06:18 by joaooliv         ###   ########.fr       */
+/*   Created: 08/17/2022 20:58:54                      #+#    #+#             */
+/*   Updated: 2022/08/18 19:47:46 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
-{
-	unsigned int	src_size;
-	unsigned int	curr_size;
 
-	src_size = 0;
-	while (src[src_size])
-		src_size++;
-	if (size != 0)
-	{
-		curr_size = 0;
-		while (*(src + curr_size) && curr_size < size - 1)
-		{
-			*(dest + curr_size) = *(src + curr_size);
-			curr_size++;
-		}
-		*(dest + curr_size) = 0;
-	}
-	return (src_size);
+#include <stdio.h>
+int	ft_find_next_prime(int nb);
+
+int main()
+{
+	printf("%i", ft_find_next_prime(2147483647));
+
 }

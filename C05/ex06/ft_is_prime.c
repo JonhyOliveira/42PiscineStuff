@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 17:19:21 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/16 19:06:18 by joaooliv         ###   ########.fr       */
+/*   Created: 2022/08/16 16:01:40 by joaooliv          #+#    #+#             */
+/*   Updated: 2022/08/17 17:37:20 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
-{
-	unsigned int	src_size;
-	unsigned int	curr_size;
 
-	src_size = 0;
-	while (src[src_size])
-		src_size++;
-	if (size != 0)
+// checks if there is n that can divide nb in whole part
+int	ft_is_prime(int nb)
+{
+	int	divisor;
+
+	if (nb > 1)
 	{
-		curr_size = 0;
-		while (*(src + curr_size) && curr_size < size - 1)
+		divisor = 2;
+		while (divisor <= nb / 2)
 		{
-			*(dest + curr_size) = *(src + curr_size);
-			curr_size++;
+			if (nb % divisor == 0)
+			{
+				return (0);
+			}
+			divisor++;
 		}
-		*(dest + curr_size) = 0;
+		return (1);
 	}
-	return (src_size);
+	return (0);
 }

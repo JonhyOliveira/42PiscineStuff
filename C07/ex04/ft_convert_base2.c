@@ -1,14 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 00:08:41 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/18 23:45:07 by joaooliv         ###   ########.fr       */
+/*   Created: 2022/08/18 23:30:13 by joaooliv          #+#    #+#             */
+/*   Updated: 2022/08/18 23:31:12 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#define INVALID_RADIX 0
+
+// parses a radix from a string, INVALID_RADIX if size <= 1 || 
+// duplicated chars || contains + or -
+int	parse_radix(char *str);
 
 // consumes prefix whitespaces and signs and returns sign result
 int	consume_prefix(char **str_p)
@@ -30,24 +36,26 @@ int	consume_prefix(char **str_p)
 	return (sign);
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi_base(char *str, char *base)
 {
+	int	radix;
 	int	sign;
 	int	result;
+	int	curr_result;
 
+	radix = parse_radix(base);
 	sign = consume_prefix(&str);
 	result = 0;
-	while (*str >= '0' && *str <= '9')
+	while (*str)
 	{
-		result = (result * 10) + (*str - '0');
+		curr_result = 0;
+		while (base[curr_result] != *str && base[curr_result])
+			curr_result++;
+		if (!base[curr_result])
+			return (sign * result);
+		result = (result * radix) + curr_result;
 		str++;
 	}
-	result *= sign;
-	return (result);
+	return (sign * result);
 }
-//
-//#include <stdio.h>
-//int main()
-//{
-//	printf("%i", ft_atoi("\n\t\r\v\r++++---420"));
-//}
+

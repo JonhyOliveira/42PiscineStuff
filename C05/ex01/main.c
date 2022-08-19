@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 17:19:30 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/15 22:48:13 by joaooliv         ###   ########.fr       */
+/*   Created: 2021/04/07 16:58:15 by vgoncalv          #+#    #+#             */
+/*   Updated: 2022/08/17 19:14:57 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
-{
-	unsigned int	i;
+#include <stdio.h>
 
-	if (n != 0)
-	{	
-		i = 0;
-		while (s1[i] == s2[i] && s1[i] != 0 && s2[i] != 0 && i < n - 1)
-			i++;
-		return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+int	ft_recursive_factorial(int nb);
+
+int	main(void)
+{
+	int nb;
+	int res;
+
+	nb = -5;
+	while (nb <= 10)
+	{
+		res = ft_recursive_factorial(nb);
+		printf("> n = %d, n! = %d\n", nb, res);
+		nb++;
 	}
 	return (0);
 }
