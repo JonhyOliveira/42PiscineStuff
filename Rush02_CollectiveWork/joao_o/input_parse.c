@@ -6,7 +6,7 @@
 /*   By: joaooliv <joaooliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:36:43 by joaooliv          #+#    #+#             */
-/*   Updated: 2022/08/21 00:35:19 by joaooliv         ###   ########.fr       */
+/*   Updated: 2022/08/21 11:55:15 by joaooliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strdup_printable(char *src)
 }
 
 // reads a line from a file to the buffer
-void	read_line(char *buf, int buf_size, int file_descriptor, int *done)
+void	read_line(char *buf, int file_descriptor, int *done)
 {
 	read(file_descriptor, buf, 1);
 	while (*buf != '\n' && *buf != 0)
@@ -88,7 +88,7 @@ char	*find_key(char *file, char *key)
 		line = (char *) malloc(LINE_MAX_LENGTH);
 		while (!done)
 		{
-			read_line(line, LINE_MAX_LENGTH, file_descriptor, &done);
+			read_line(line, file_descriptor, &done);
 			if (match_nbr(line, key))
 			{
 				while (*line == ' ' || (*line >= '0' && *line <= '9'))
@@ -112,6 +112,8 @@ int	main()
 {
 	char	*file_path;
 
-	file_path = "dict";
-	printf("%s", find_key(file_path, "1000000000000000000000000000000000000"));
+	file_path = "dict3.dict";
+	printf("%s\n", find_key(file_path, "2"));
+	printf("%s\n", find_key(file_path, "4"));
+	printf("%s\n", find_key(file_path, "2222222222222222222222222222222222222222"));
 }
